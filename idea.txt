@@ -1,0 +1,28 @@
+Hello, 
+
+i want to build a server with the idea below:
+
+the idea is: get video from internet like youtube, instagram, tiktok... by link and upload it back to x.com
+
+and maybe before upload the video i can want to re-render it with new template
+
+the input will be a url then a rest steps will be automatic by server
+
+can you suggest me which programing language suitable to build this server?   
+
+=======
+Django và Flutter
+
+==== 
+
+let help me to set up a new python project use Django framework. this project will be a web project. features i want to have:
+
+1. login screen to authenticate user
+2. after logged in then will have a screen with some input:
+  - url: this will be video source
+  - title: this is the text will use to create post
+  - submit button: submit form to server
+3. after click submit button then send form data to server
+  - step 1: download video from url 
+  - step 2: re-render video with new template
+  - step 3: upload new video to x.com
