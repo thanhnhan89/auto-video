@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from auto_video.views import my_new_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('new-page/', my_new_page, name='new_page'),  # Add your URL pattern
 ]
