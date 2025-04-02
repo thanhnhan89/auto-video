@@ -20,6 +20,13 @@ def download_video(url):
             'format': 'bestvideo+bestaudio/best',
             'outtmpl': original_filename,
             'merge_output_format': 'mp4',
+            'no_check_certificates': True,
+            'ignoreerrors': True,
+            'no_warnings': True,
+            'quiet': True,
+            'extract_flat': False,
+            'force_generic_extractor': False,
+            'cookiesfrombrowser': ('chrome',),  # This will use cookies from Chrome if available
         }
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])

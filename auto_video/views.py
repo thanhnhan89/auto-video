@@ -8,12 +8,7 @@ from .service.video_processing import download_video
 logger = logging.getLogger(__name__)
 
 def video_page(request):
-
-    # url = 'https://www.youtube.com/watch?v=58EIyxTSRwg'
-    # url = 'https://www.youtube.com/shorts/i4Kt7p0Y29g'
-
     # Download the video from the URL
-    # download_video(url)
     if(request.method == 'POST'):
         form = VideoForm(request.POST)
 
