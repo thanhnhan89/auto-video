@@ -31,6 +31,8 @@ python manage.py runserver
 Sau khi run migrate
 python manage.py migrate
 
+sort start server: ./start.sh
+
 ### Tạo admin user
 
 python manage.py createsuperuser

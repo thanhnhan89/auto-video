@@ -3,6 +3,7 @@ import requests
 from yt_dlp import YoutubeDL
 import subprocess
 import datetime
+import re
 
 # Create a logger instance
 logger = logging.getLogger(__name__)
@@ -10,8 +11,21 @@ logger = logging.getLogger(__name__)
 def download_video(url):
     # generate file name by time
     timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    original_filename = f'data/video-{timestamp}.mp4'
-    reencoded_filename = f'data/video-encode-{timestamp}.mp4'
+    
+    # Get video title first
+    try:
+        with YoutubeDL({'quiet': True, 'no_warnings': True}) as ydl:
+            info = ydl.extract_info(url, download=False)
+            video_title = info.get('title', '')
+            # Clean the title to make it filesystem-friendly
+            video_title = re.sub(r'[<>:"/\\|?*]', '', video_title)
+            video_title = video_title.strip()
+    except Exception as e:
+        logger.error(f"Failed to extract video title: {e}")
+        video_title = f"video-{timestamp}"
+    
+    original_filename = f'data/{video_title}-{timestamp}.mp4'
+    reencoded_filename = f'data/{video_title}-encode-{timestamp}.mp4'
 
     logger.info(f"Downloading video from URL: {url}")
     # Download the video from the URL
