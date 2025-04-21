@@ -4,6 +4,7 @@ from yt_dlp import YoutubeDL
 import subprocess
 import datetime
 import re
+import os
 
 # Create a logger instance
 logger = logging.getLogger(__name__)
@@ -26,6 +27,9 @@ def download_video(url):
     
     original_filename = f'data/{video_title}-{timestamp}.mp4'
     reencoded_filename = f'data/{video_title}-encode-{timestamp}.mp4'
+
+    # Ensure data directory exists
+    os.makedirs('data', exist_ok=True)
 
     logger.info(f"Downloading video from URL: {url}")
     # Download the video from the URL
@@ -57,9 +61,16 @@ def download_video(url):
         logger.info("Deleting the original video file...")
         subprocess.run(['rm', original_filename])
         
+        # Return the file path and clean filename for browser download
+        download_filename = f'{video_title}.mp4'
+        return {
+            'file_path': reencoded_filename,
+            'download_filename': download_filename
+        }
+        
     except Exception as e:
         logger.error(f"Failed to download the video: {e}")
-    pass
+        return None
 
 
 def upload_video(url):
