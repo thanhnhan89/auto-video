@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-e-m-+3#b1e66c38j&7vqx31d$)8&mq2$a!m1*ga)_2@_-def83
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.110.48']
 
 
 # Application definition
@@ -82,13 +82,17 @@ WSGI_APPLICATION = 'auto_video.wsgi.application'
 #     }
 # }
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'mysql.connector.django',
+    #     'NAME': 'auto-video',
+    #     'USER': 'root',
+    #     'PASSWORD': 'root',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    # }
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'auto-video',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
